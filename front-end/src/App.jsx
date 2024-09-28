@@ -10,8 +10,8 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/register" element={<RegisterPage />} />
-                <Route path="/participants" element={<ParticipantsPage />} />
+                <Route path="/event/:eventId/register" element={<RegisterPage />} />
+                <Route path="/event/:eventId/participants" element={<ParticipantsPage />} />
                 <Route path="/" element={<HomePage />} />
             </Routes>
         </BrowserRouter>
