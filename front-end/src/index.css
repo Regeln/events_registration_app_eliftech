@@ -29,15 +29,28 @@ fieldset {
     padding: 0;
 }
 
-.grid_wrapper {
+.grid-wrapper-participants {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.participant-component {
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+    padding: 15px;
+    border: solid 1px;
+    min-width: 25%;
+}
+
+.grid-wrapper-events {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(3, 1fr);
     overflow:hidden
-
 }
 
-.event_component {
+.event-component {
     display: flex;
     flex-direction: column;
     margin: 15px;
@@ -61,3 +74,4 @@ fieldset {
     margin-left: 5px;
     margin-right: 20px;
 }
+
