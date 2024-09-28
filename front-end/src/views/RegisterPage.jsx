@@ -1,14 +1,16 @@
 import { useRef, useState } from "react";
 import { useParams } from "react-router-dom";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function RegisterPage() {
     const params = useParams();
     const [error, setError] = useState("");
     const [isSuccess, setIsSuccess] = useState(false);
+    const [birthDatePick, setBirthDatePick] = useState(new Date());
 
     const nameInput = useRef(null);
     const emailInput = useRef(null);
-    const birthDateInput = useRef(null);
     const radioSocialMediaInput = useRef(null);
     const radioFriendsInput = useRef(null);
     const radioFoundMyselfInput = useRef(null);
@@ -31,7 +33,7 @@ function RegisterPage() {
         const participantData = {
             name: nameInput.current.value,
             email: emailInput.current.value,
-            birthDate: birthDateInput.current.value,
+            birthDate: birthDatePick,
             heardFrom: selectedRadio,
             eventId: params.eventId
         };
@@ -71,10 +73,11 @@ function RegisterPage() {
                 />
 
                 <label htmlFor="birth-date">Date of birth</label>
-                <input
-                    type="text"
+                <DatePicker
+                    selected={birthDatePick}
+                    onChange={date => setBirthDatePick(date)}
+                    dateFormat="yyyy-MM-dd"
                     id="birth-date"
-                    ref={birthDateInput}
                 />
 
                 <fieldset>
