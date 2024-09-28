@@ -35,15 +35,15 @@ function HomePage() {
     return (
         <>
             <h2>Events</h2>
-            <div className="grid_wrapper">
+            <div className="grid-wrapper-events">
                 {events.map(event => 
-                <div key={event.id} className="event_component">
+                <div key={event.id} className="event-component">
                     <h3>{event.title}</h3>
                     <p>{event.description}</p>
                     <p>{event.date}</p>
                     <p>{event.organiser}</p>
-                    <Link to="/register">Register</Link>
-                    <Link to="/participants" className="view">View</Link>
+                    <Link to={`/event/${event.id}/register`}>Register</Link>
+                    <Link to={`/event/${event.id}/participants`} className="view">View</Link>
                 </div>
                 )}
             </div>
