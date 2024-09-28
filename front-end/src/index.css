@@ -3,7 +3,7 @@
 }
 
 body {
-    margin: 5% 5%;
+    margin: 0 5%;
 }
 
 h3 {
@@ -18,11 +18,21 @@ a {
     text-decoration: none;
 }
 
+input {
+    margin-bottom: 15px;
+    padding: 5px 5px;
+}
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
 .grid_wrapper {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    grid-auto-rows: 0;
     overflow:hidden
 
 }
@@ -34,4 +44,20 @@ a {
     padding: 15px;
     border: solid 1px;
     min-width: 25%;
+}
+
+.registration-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.radio-group {
+    margin: 10px 0;
+}
+
+.radio-label {
+    margin-left: 5px;
+    margin-right: 20px;
 }
