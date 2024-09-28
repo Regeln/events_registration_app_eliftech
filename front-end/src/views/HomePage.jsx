@@ -5,6 +5,7 @@ import "../index.css";
 
 
 function HomePage() {
+    const [sortType, setSortType] = useState("title");
     const [currentPage, setCurrentPage] = useState(1);
     const [pageCount, setPageCount] = useState();
     const [events, setEvents] = useState([]);
@@ -19,6 +20,18 @@ function HomePage() {
 
         loadEvents();
     }, [currentPage]);   
+
+    useEffect(() => {
+        const sortedEvents = [...events].sort((a, b) => {
+            if (sortType === "title" || sortType === "organiser") {
+                return a[sortType].localeCompare(b[sortType]);
+            } else if (sortType === "event_date") {
+                return new Date(a.event_date) - new Date(b.event_date);
+            }
+        });
+
+        setEvents(sortedEvents);
+    }, [sortType]);
 
     const handlePrevPage = () => {
         if (currentPage > 1) {
@@ -35,6 +48,14 @@ function HomePage() {
     return (
         <>
             <h2>Events</h2>
+
+            <label htmlFor="sort-select">Sorting: </label>
+            <select id="sort-select" onChange={(e) => setSortType(e.target.value)}>
+                <option value="title">Title</option>
+                <option value="event_date">Date</option>
+                <option value="organiser">Organizer</option>
+            </select>
+
             <div className="grid-wrapper-events">
                 {events.map(event => 
                 <div key={event.id} className="event-component">
