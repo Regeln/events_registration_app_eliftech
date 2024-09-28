@@ -1,22 +1,15 @@
 import express from "express";
-import events from "../db.js";
+import getEvents from "./eventController.js";
+import { getParticipants, registerParticipant } from "./participantController.js";
 
 const app = express();
 
 app.use(express.json());
 
-app.get("/api/events", (req, res) => {
-    const page = req.query.page;
-    const pageSize = req.query.pageSize;
+app.post("/api/events/:eventId/register", registerParticipant);
+app.get("/api/events/:eventId/participants", getParticipants);
+app.get("/api/events", getEvents);
 
-    const startIndex = (page - 1) * pageSize;
-    const endIndex = page * pageSize;
-
-    const pagEvents = events.slice(startIndex, endIndex);
-    const pageCount = Math.ceil(events.length / pageSize);
-
-    return res.json({ events: pagEvents, pageCount });
-});
 
 const port = 4000;
 
